@@ -1,0 +1,227 @@
+.container {
+  display: flow-root;
+}
+
+.container--has-full-width {
+  width: 100%;
+}
+
+.container--has-half-width {
+  width: 50%;
+}
+
+.container--has-one-third-width {
+  width: 33.33%;
+}
+
+.container--has-two-thirds-width {
+  width: 66.66%;
+}
+
+.container--has-one-quarter-width {
+  width: 25%;
+}
+
+.container--has-three-quarters-width {
+  width: 75%;
+}
+
+.container--has-content-width {
+  width: min-content;
+}
+
+.container--has-auto-width {
+  width: auto;
+}
+
+.container--has-full-height {
+  height: 100%;
+}
+
+.container--has-half-height {
+  height: 50%;
+}
+
+.container--has-one-third-height {
+  height: 33.33%;
+}
+
+.container--has-two-thirds-height {
+  height: 66.66%;
+}
+
+.container--has-one-quarter-height {
+  height: 25%;
+}
+
+.container--has-three-quarters-height {
+  height: 75%;
+}
+
+.container--has-content-height {
+  height: min-content;
+}
+
+.container--has-auto-height {
+  height: auto;
+}
+
+.container--has-no-horizontal-padding {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.container--has-button-horizontal-padding {
+  padding-left: var(--gap-button);
+  padding-right: var(--gap-button);
+}
+
+.container--has-tiny-horizontal-padding {
+  padding-left: var(--gap-tiny);
+  padding-right: var(--gap-tiny);
+}
+
+.container--has-small-horizontal-padding {
+  padding-left: var(--gap-small);
+  padding-right: var(--gap-small);
+}
+
+.container--has-normal-horizontal-padding {
+  padding-left: var(--gap-normal);
+  padding-right: var(--gap-normal);
+}
+
+.container--has-medium-horizontal-padding {
+  padding-left: var(--gap-medium);
+  padding-right: var(--gap-medium);
+}
+
+.container--has-large-horizontal-padding {
+  padding-left: var(--gap-large);
+  padding-right: var(--gap-large);
+}
+
+.container--has-very-large-horizontal-padding {
+  padding-left: var(--gap-very-large);
+  padding-right: var(--gap-very-large);
+}
+
+.container--has-no-vertical-padding {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.container--has-button-vertical-padding {
+  padding-top: var(--gap-button);
+  padding-bottom: var(--gap-button);
+}
+
+.container--has-tiny-vertical-padding {
+  padding-top: var(--gap-tiny);
+  padding-bottom: var(--gap-tiny);
+}
+
+.container--has-small-vertical-padding {
+  padding-top: var(--gap-small);
+  padding-bottom: var(--gap-small);
+}
+
+.container--has-normal-vertical-padding {
+  padding-top: var(--gap-normal);
+  padding-bottom: var(--gap-normal);
+}
+
+.container--has-medium-vertical-padding {
+  padding-top: var(--gap-medium);
+  padding-bottom: var(--gap-medium);
+}
+
+.container--has-large-vertical-padding {
+  padding-top: var(--gap-large);
+  padding-bottom: var(--gap-large);
+}
+
+.container--has-very-large-vertical-padding {
+  padding-top: var(--gap-very-large);
+  padding-bottom: var(--gap-very-large);
+}
+
+.container--has-no-border-radius {
+  border-radius: 0;
+}
+
+.container--has-small-border-radius {
+  border-radius: var(--border-radius-small);
+}
+
+.container--has-large-border-radius {
+  border-radius: var(--border-radius-large);
+}
+
+.container--has-no-background {
+  background: none;
+}
+
+.container--has-default-background {
+  background: var(--color-background);
+}
+
+.container--has-code-background {
+  background: var(--color-code-background);
+}
+
+.container--has-button-background {
+  background: var(--color-button-background);
+}
+
+.container--has-button-disabled-background {
+  background: var(--color-button-disabled-background);
+}
+
+.container--has-danger-background {
+  background: var(--color-danger-background);
+}
+
+.container--has-warning-background {
+  background: var(--color-warning-background);
+}
+
+.container--has-success-background {
+  background: var(--color-success-background);
+}
+
+.container--has-section-background {
+  background: var(--color-section-background);
+}
+
+.container--has-no-border {
+  border: none;
+}
+
+.container--has-default-border {
+  border: 1px solid var(--color-border);
+}
+
+.container--has-button-border {
+  border: 1px solid var(--color-border);
+}
+
+.container--has-table-border {
+  border: 1px solid var(--color-table-border);
+}
+
+.container--has-popup-border {
+  border: 1px solid var(--color-popup-border);
+}
+
+.container--has-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 1;
+  position: relative;
+}
+
+.container--has-bottom-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  position: relative;
+}

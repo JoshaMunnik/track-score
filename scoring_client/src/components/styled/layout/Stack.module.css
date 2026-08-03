@@ -1,0 +1,43 @@
+.stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+}
+
+.stack * {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+
+.stack-item--horizontally-align-at-start {
+  justify-self: flex-start;
+}
+
+.stack-item--horizontally-align-at-center {
+  justify-self: center;
+}
+
+.stack-item--horizontally-align-at-end {
+  justify-self: flex-end;
+}
+
+.stack-item--horizontally-stretch {
+  justify-self: stretch;
+}
+
+.stack-item--vertically-align-at-start {
+  align-self: flex-start;
+}
+
+.stack-item--vertically-align-at-center {
+  align-self: center;
+}
+
+.stack-item--vertically-align-at-end {
+  align-self: flex-end;
+}
+
+.stack-item--vertically-stretch {
+  align-self: stretch;
+}
+

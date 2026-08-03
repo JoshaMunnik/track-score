@@ -1,0 +1,6 @@
+.dice {
+  display: grid;
+  gap: var(--gap-tiny);
+  max-width: calc(100% - 4.5rem - var(--gap-normal));
+  grid-template-columns: repeat(auto-fit, 4.5rem);
+}

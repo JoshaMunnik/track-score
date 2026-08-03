@@ -1,0 +1,20 @@
+{
+  "name": "TrackScore",
+  "short_name": "TrackScore",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#dadada",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/client/favicon_192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/client/favicon_512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+
+.grid {
+  display: grid;
+  width: 100%;
+  background: var(--color-background);
+}
+
+.grid--has-border {
+  border: 1px solid var(--color-icon);
+  border-radius: var(--border-radius-small);
+}
+
+.grid--use-small-font {
+  font-size: 0.8rem;
+}
+
+.grid-item {
+  --vertical-padding: var(--gap-tiny);
+  --horizontal-padding: var(--gap-tiny);
+  padding: var(--vertical-padding) var(--horizontal-padding);
+  place-self: stretch;
+}
+
+.grid--is-form {
+  grid-auto-rows: minmax(2.5rem, auto);
+
+  & .grid-item {
+    display: flex;
+    align-items: center;
+    --horizontal-padding: 0;
+  }
+}
+
+.grid-item--has-top-border {
+  border-top: 1px solid var(--color-icon);
+}
+
+.grid-item--has-bottom-border {
+  border-bottom: 1px solid var(--color-icon);
+}
+
+.grid-item--has-left-border {
+  border-left: 1px solid var(--color-icon);
+}
+
+.grid-item--has-right-border {
+  border-right: 1px solid var(--color-icon);
+}
+
+.grid-item--has-1-span {
+  grid-column: span 1;
+}
+
+.grid-item--has-2-span {
+  grid-column: span 2;
+}
+
+.grid-item--has-3-span {
+  grid-column: span 3;
+}
+
+.grid-item--has-4-span {
+  grid-column: span 4;
+}
+
+.grid-item--has-5-span {
+  grid-column: span 5;
+}
+
+.grid-item--has-6-span {
+  grid-column: span 6;
+}
+
+.grid-item--has-7-span {
+  grid-column: span 7;
+}
+
+.grid-item--has-8-span {
+  grid-column: span 8;
+}
+
+.grid-item--has-9-span {
+  grid-column: span 9;
+}
+
+.grid-item--has-10-span {
+  grid-column: span 10;
+}
+
+.grid-item--has-no-vertical-padding {
+  --vertical-padding: 0;
+}
+
+.grid-item--has-button-vertical-padding {
+  --vertical-padding: var(--gap-button);
+}
+
+.grid-item--has-tiny-vertical-padding {
+  --vertical-padding: var(--gap-tiny);
+}
+
+.grid-item--has-small-vertical-padding {
+  --vertical-padding: var(--gap-small);
+}
+
+.grid-item--has-normal-vertical-padding {
+  --vertical-padding: var(--gap-normal);
+}
+
+.grid-item--has-medium-vertical-padding {
+  --vertical-padding: var(--gap-medium);
+}
+
+.grid-item--has-large-vertical-padding {
+  --vertical-padding: var(--gap-large);
+}
+
+.grid-item--has-very-large-vertical-padding {
+  --vertical-padding: var(--gap-very-large);
+}
+
+.grid-item--has-no-horizontal-padding {
+  --horizontal-padding: 0;
+}
+
+.grid-item--has-button-horizontal-padding {
+  --horizontal-padding: var(--gap-button);
+}
+
+.grid-item--has-tiny-horizontal-padding {
+  --horizontal-padding: var(--gap-tiny);
+}
+
+.grid-item--has-small-horizontal-padding {
+  --horizontal-padding: var(--gap-small);
+}
+
+.grid-item--has-normal-horizontal-padding {
+  --horizontal-padding: var(--gap-normal);
+}
+
+.grid-item--has-medium-horizontal-padding {
+  --horizontal-padding: var(--gap-medium);
+}
+
+.grid-item--has-large-horizontal-padding {
+  --horizontal-padding: var(--gap-large);
+}
+
+.grid-item--has-very-large-horizontal-padding {
+  --horizontal-padding: var(--gap-very-large);
+}
+
+.grid-item--has-default-background {
+  background: var(--color-background);
+}
+
+.grid-item--has-alternate-background {
+  background-color: var(--color-alternate-background);
+}
+
+.grid-item--has-code-background {
+  background: var(--color-code-background);
+}
+
+.grid-item--has-button-background {
+  background: var(--color-button-background);
+}
+
+.grid-item--has-button-disabled-background {
+  background: var(--color-button-disabled-background);
+}
+
+.grid-item--has-danger-background {
+  background: var(--color-danger-background);
+}
+
+.grid-item--has-warning-background {
+  background: var(--color-warning-background);
+}
+
+.grid-item--has-success-background {
+  background: var(--color-success-background);
+}
+
+.grid-item--has-section-background {
+  background: var(--color-section-background);
+}
+

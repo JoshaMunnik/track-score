@@ -1,0 +1,11 @@
+.popup-dialog {
+  border: none;
+  border-radius: var(--border-radius-large);
+  padding: 0;
+  max-width: calc(min(100%, var(--max-body-width)) - 1rem);
+  overflow: hidden;
+}
+
+.popup-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}

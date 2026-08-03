@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Trackscore.nl can be used to track scores for (Catan) dice, Wizard, Tichu, individual and team games."
+    />
+    <title>trackscore.nl</title>
+    <!-- web app manifest (Android / Chrome) -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+    <!-- iOS / Safari specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="apple-mobile-web-app-title" content="TrackScore"/>
+    <link rel="apple-touch-icon" href="/favicon_192x192.png"/>
+    <!-- generated files -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // for android devices
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/client/sw.js');
+      }
+    </script>
+  </body>
+</html>
+

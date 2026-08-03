@@ -1,0 +1,29 @@
+.text {
+  padding: 0;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.paragraph {
+  margin-bottom: var(--gap-normal);
+}
+
+.text--is-danger {
+  color: var(--color-danger-text);
+}
+
+.text--is-warning {
+  color: var(--color-warning-text);
+}
+
+.text--is-success {
+  color: var(--color-success-text);
+}
+
+.text--is-center {
+  text-align: center;
+}
+
+.text--is-right {
+  text-align: right;
+}

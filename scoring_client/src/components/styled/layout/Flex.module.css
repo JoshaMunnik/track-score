@@ -1,0 +1,131 @@
+.flex {
+  display: flex;
+}
+
+.flex--is-column {
+  flex-direction: column;
+}
+
+.flex--is-reversed-column {
+  flex-direction: column-reverse;
+}
+
+.flex--is-row {
+  flex-direction: row;
+}
+
+.flex--is-reversed-row {
+  flex-direction: row-reverse;
+}
+
+.flex--has-wrapping {
+  flex-wrap: wrap;
+}
+
+.flex--align-at-start {
+  align-items: flex-start;
+}
+
+.flex--align-at-end {
+  align-items: flex-end;
+}
+
+.flex--align-at-center {
+  align-items: center;
+}
+
+.flex--align-at-baseline {
+  align-items: baseline;
+}
+
+.flex--stretch {
+  align-items: stretch;
+}
+
+.flex--distribute-at-start-at-main-axis {
+  justify-content: flex-start;
+}
+
+.flex--distribute-at-end-at-main-axis {
+  justify-content: flex-end;
+}
+
+.flex--distribute-at-center-at-main-axis {
+  justify-content: center;
+}
+
+.flex--stretch-at-main-axis {
+  justify-content: stretch;
+}
+
+.flex--space-between-at-main-axis {
+  justify-content: space-between;
+}
+
+.flex--space-around-at-main-axis {
+  justify-content: space-around;
+}
+
+.flex--space-evenly-at-main-axis {
+  justify-content: space-evenly;
+}
+
+.flex--distribute-at-start-at-cross-axis {
+  align-content: flex-start;
+}
+
+.flex--distribute-at-end-at-cross-axis {
+  align-content: flex-end;
+}
+
+.flex--distribute-at-center-at-cross-axis {
+  align-content: center;
+}
+
+.flex--stretch-at-cross-axis {
+  align-content: stretch;
+}
+
+.flex--space-between-at-cross-axis {
+  align-content: space-between;
+}
+
+.flex--space-around-at-cross-axis {
+  align-content: space-around;
+}
+
+.flex--space-evenly-at-cross-axis {
+  align-content: space-evenly;
+}
+
+.flex--has-no-gap {
+  gap: 0;
+}
+
+.flex--has-button-gap {
+  gap: var(--gap-button);
+}
+
+.flex--has-tiny-gap {
+  gap: var(--gap-tiny);
+}
+
+.flex--has-small-gap {
+  gap: var(--gap-small);
+}
+
+.flex--has-normal-gap {
+  gap: var(--gap-normal);
+}
+
+.flex--has-medium-gap {
+  gap: var(--gap-medium);
+}
+
+.flex--has-large-gap {
+  gap: var(--gap-large);
+}
+
+.flex--has-very-large-gap {
+  gap: var(--gap-very-large);
+}
