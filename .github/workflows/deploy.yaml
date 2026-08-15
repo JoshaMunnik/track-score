@@ -1,0 +1,93 @@
+name: CI/CD Deployment
+
+on:
+  push:
+    branches:
+      - master
+      - development
+    paths:
+      - 'scoring_server/**'
+      - 'scoring_client/**'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'scoring_server/**'
+      - 'scoring_client/**'
+
+jobs:
+  # Job 1: Deploy Server
+  deploy-server:
+    name: Deploy Server
+    runs-on: ubuntu-latest
+    environment: production
+    # Runs only if changes occurred in the server folder
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy Server
+        if: github.event_name == 'push'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./scoring_server/
+          server-dir: /scoring_server/
+
+  # Job 2: Build and Deploy Client
+  deploy-client:
+    name: Deploy Client
+    runs-on: ubuntu-latest
+    environment: production
+    # Runs only if changes occurred in the client folder
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: scoring_client/package-lock.json
+
+      - name: Build Client
+        run: |
+          cd scoring_client
+          npm ci
+          npm run build
+
+      - name: FTP Deploy Client Build
+        if: github.event_name == 'push'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./public_html/client/
+          server-dir: /public_html/client/
+
+  # Job 3: Build and Deploy Client
+  build-and-test-client:
+    name: Build & Test Client
+    runs-on: ubuntu-latest
+    environment: production
+    # Runs only if changes occurred in the client folder
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: scoring_client/package-lock.json
+
+      - name: Build Client
+        run: |
+          cd scoring_client
+          npm ci
+          npm run build
