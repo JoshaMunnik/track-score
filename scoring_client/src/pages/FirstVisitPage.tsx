@@ -36,10 +36,11 @@ export function FirstVisitPage() {
         By using this web application, you understand that:
       </Paragraph>
       <Paragraph>
-        1. This app does not use cookies.
+        1. This application does not use cookies.
       </Paragraph>
       <Paragraph>
-        2. The app uses the browser's local storage to store scores, names and configurations.
+        2. This application uses the browser's local storage to store scores, names and
+        configurations.
       </Paragraph>
       <Paragraph>
         3. When sharing a game with other users; the scores, player names and
