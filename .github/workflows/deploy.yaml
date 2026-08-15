@@ -35,6 +35,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./scoring_server/
           server-dir: /scoring_server/
+          timeout: 180000
 
   # Job 2: Build and Deploy Client
   deploy-client:
@@ -49,7 +50,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
           cache-dependency-path: scoring_client/package-lock.json
 
@@ -68,6 +69,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./public_html/client/
           server-dir: /public_html/client/
+          timeout: 180000
 
   # Job 3: Build and Deploy Client
   build-and-test-client:
@@ -82,7 +84,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm'
           cache-dependency-path: scoring_client/package-lock.json
 
