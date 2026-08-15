@@ -90,8 +90,8 @@ test('full Pinnacolo game with 3 players', async ({page}) => {
     const entry0 = page.locator('div[class*="grid-item"]').nth(index * 4 + 1);
     const entry1 = page.locator('div[class*="grid-item"]').nth(index * 4 + 2);
     const entry2 = page.locator('div[class*="grid-item"]').nth(index * 4 + 3);
-    await expect(entry0).not.toHaveClass(/.*alternate.*/);
-    await expect(entry1).toHaveClass(/.*alternate.*/);
-    await expect(entry2).not.toHaveClass(/.*alternate.*/);
+    await expect(entry0).not.toHaveClass(/.*winner.*/);
+    await expect(entry1).toHaveClass(/.*winner.*/);
+    await expect(entry2).not.toHaveClass(/.*winner.*/);
   }
 });

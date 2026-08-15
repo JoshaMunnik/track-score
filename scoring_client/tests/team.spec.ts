@@ -94,21 +94,21 @@ test('full Pinnacolo game with 2 teams', async ({page}) => {
   await expect(page.getByRole('button', {name: 'Start', exact: true})).toHaveCount(0);
   const team0 = page.locator('div[class*="grid-item"]').nth(1);
   const team1 = page.locator('div[class*="grid-item"]').nth(2);
-  await expect(team0).not.toHaveClass(/.*alternate.*/);
-  await expect(team1).toHaveClass(/.*alternate.*/);
+  await expect(team0).not.toHaveClass(/.*winner.*/);
+  await expect(team1).toHaveClass(/.*winner.*/);
   for(let index = 0; index <= FourPlayerGame.length; index++) {
     const entry0 = page.locator('div[class*="grid-item"]').nth(index * 5 + 1 + 3);
     const entry1 = page.locator('div[class*="grid-item"]').nth(index * 5 + 2 + 3);
     const entry2 = page.locator('div[class*="grid-item"]').nth(index * 5 + 3 + 3);
     const entry3 = page.locator('div[class*="grid-item"]').nth(index * 5 + 4 + 3);
-    await expect(entry0).not.toHaveClass(/.*alternate.*/);
-    await expect(entry1).not.toHaveClass(/.*alternate.*/);
-    await expect(entry2).toHaveClass(/.*alternate.*/);
-    await expect(entry3).toHaveClass(/.*alternate.*/);
+    await expect(entry0).not.toHaveClass(/.*winner.*/);
+    await expect(entry1).not.toHaveClass(/.*winner.*/);
+    await expect(entry2).toHaveClass(/.*winner.*/);
+    await expect(entry3).toHaveClass(/.*winner.*/);
   }
   const totalRow = 3 + 5 + FourPlayerGame.length * 5 ;
   const total0 = page.locator('div[class*="grid-item"]').nth(totalRow + 1);
   const total1 = page.locator('div[class*="grid-item"]').nth(totalRow + 2);
-  await expect(total0).not.toHaveClass(/.*alternate.*/);
-  await expect(total1).toHaveClass(/.*alternate.*/);
+  await expect(total0).not.toHaveClass(/.*winner.*/);
+  await expect(total1).toHaveClass(/.*winner.*/);
 });

@@ -312,9 +312,9 @@ test('full game with 3 players', async ({page}) => {
   const player0 = page.locator('div[class*="grid-item"]').nth(1);
   const player1 = page.locator('div[class*="grid-item"]').nth(2);
   const player2 = page.locator('div[class*="grid-item"]').nth(3);
-  await expect(player0).toHaveClass(/.*alternate.*/);
-  await expect(player1).not.toHaveClass(/.*alternate.*/);
-  await expect(player2).not.toHaveClass(/.*alternate.*/);
+  await expect(player0).toHaveClass(/.*winner.*/);
+  await expect(player1).not.toHaveClass(/.*winner.*/);
+  await expect(player2).not.toHaveClass(/.*winner.*/);
 });
 
 test('starting a second game after a full game with the same 3 players', async ({page}) => {
