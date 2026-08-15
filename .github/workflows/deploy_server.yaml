@@ -1,0 +1,33 @@
+name: CI/CD Deployment
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'scoring_server/**'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'scoring_server/**'
+
+jobs:
+  # just copy files from scoring_server to the server via FTP
+  deploy-server:
+    name: Deploy Server
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v7
+
+      - name: FTP Deploy Server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./scoring_server/
+          server-dir: /scoring_server/
+          timeout: 180000
