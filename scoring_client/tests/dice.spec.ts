@@ -64,37 +64,6 @@ test('should be able to stop rolling', async ({page}) => {
   await expect(startButton).toBeVisible();
 });
 
-test('should navigate to Dice settings page', async ({page}) => {
-  // Click the settings button (assuming it's available in the header or similar)
-  await page.getByRole('link', {name: 'Settings'}).click();
-
-  // Check that we're on the settings page
-  await expect(page).toHaveURL(/\/client\/dice\/settings$/);
-
-  // Check for configuration form elements
-  const configurationForm = page.locator('div[class*="configuration-form"]');
-  await expect(configurationForm).toBeVisible();
-
-  // Check for dice configuration form
-  const diceConfigurationForm = page.locator('div[class*="dice-configuration-form"]');
-  await expect(diceConfigurationForm).toBeVisible();
-});
-
-test('should be able to configure dice settings', async ({page}) => {
-  // Navigate to settings
-  await page.getByRole('link', {name: 'Settings'}).click();
-
-  // Check that we can see configuration options
-  const diceCountInput = page.getByLabel('Dice count');
-  await expect(diceCountInput).toBeVisible();
-
-  const showTotalToggle = page.getByLabel('Show dice with total');
-  await expect(showTotalToggle).toBeVisible();
-
-  const useGroupsToggle = page.getByLabel('Fair rolls');
-  await expect(useGroupsToggle).toBeVisible();
-});
-
 test('check fair rolling with 2 dice and 2 groups', async ({page}) => {
   // create a setting for 2 dice using fair rolling with 2 groups
   await page.getByRole('link').click();

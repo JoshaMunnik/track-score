@@ -373,7 +373,6 @@ test('full tichu game', async ({page}) => {
     // update total scores
     totalScores[0] += roundScores[0];
     totalScores[1] += roundScores[1];
-    console.log({totalScores});
     // validate score and total score fields
     const score0 = page.locator('div[class*="grid-item"]').nth(scoreRow + 1);
     const score1 = page.locator('div[class*="grid-item"]').nth(scoreRow + 3);
@@ -387,17 +386,17 @@ test('full tichu game', async ({page}) => {
     await expect(total1).toHaveText(totalScores[1].toString());
   }
   await expect(page.getByRole('button', {name: 'Start', exact: true})).toHaveCount(0);
-  await expect(page.locator('div[class*="grid-item"]').nth(1)).not.toHaveClass(/.*alternate.*/);
-  await expect(page.locator('div[class*="grid-item"]').nth(2)).toHaveClass(/.*alternate.*/);
+  await expect(page.locator('div[class*="grid-item"]').nth(1)).not.toHaveClass(/.*winner.*/);
+  await expect(page.locator('div[class*="grid-item"]').nth(2)).toHaveClass(/.*winner.*/);
   // check correct style for each row
   for (let index = 0; index <= TichuGame.length; index++) {
     const entry0 = page.locator('div[class*="grid-item"]').nth(index * 5 + 1 + 3);
     const entry1 = page.locator('div[class*="grid-item"]').nth(index * 5 + 2 + 3);
     const entry2 = page.locator('div[class*="grid-item"]').nth(index * 5 + 3 + 3) ;
     const entry3 = page.locator('div[class*="grid-item"]').nth(index * 5 + 4 + 3);
-    await expect(entry0).not.toHaveClass(/.*alternate.*/);
-    await expect(entry1).not.toHaveClass(/.*alternate.*/);
-    await expect(entry2).toHaveClass(/.*alternate.*/);
-    await expect(entry3).toHaveClass(/.*alternate.*/);
+    await expect(entry0).not.toHaveClass(/.*winner.*/);
+    await expect(entry1).not.toHaveClass(/.*winner.*/);
+    await expect(entry2).toHaveClass(/.*winner.*/);
+    await expect(entry3).toHaveClass(/.*winner.*/);
   }
 });
