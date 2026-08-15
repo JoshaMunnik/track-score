@@ -6,11 +6,6 @@ on:
       - master
     paths:
       - 'scoring_server/**'
-  pull_request:
-    branches:
-      - master
-    paths:
-      - 'scoring_server/**'
 
 jobs:
   # just copy files from scoring_server to the server via FTP
