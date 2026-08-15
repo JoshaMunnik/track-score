@@ -6,6 +6,10 @@ use Cake\Http\Response;
 use Cake\Routing\Asset;
 use RuntimeException;
 
+/**
+ * The name of this controller matches the name of the directory where the SPA is built.
+ * This controller will serve the `index.html` file from that directory.
+ */
 class ClientController extends AppController
 {
   /**
