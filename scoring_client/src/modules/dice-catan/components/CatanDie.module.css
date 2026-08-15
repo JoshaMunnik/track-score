@@ -1,0 +1,29 @@
+.catan-die {
+  width: 4.5rem;
+  height: 4.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border-radius: var(--border-radius-small);
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: bold;
+  text-shadow: 0 0 2px hsla(0 0% 0% / 0.3);
+}
+
+.catan-die--is-black {
+  color: black;
+}
+
+.catan-die--is-green {
+  color: hsl(128 100% 20.6%);
+}
+
+.catan-die--is-blue {
+  color: hsl(218 100% 44.2%);
+}
+
+.catan-die--is-yellow {
+  color: hsl(45 100% 50%);
+}

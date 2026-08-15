@@ -1,0 +1,14 @@
+.result-container {
+  display: inline-block;
+  padding: 0 var(--gap-tiny);
+}
+
+.result-container--is-correct {
+  color: var(--color-button-success-text);
+  background-color: var(--color-button-success-background);
+}
+
+.result-container--is-wrong {
+  color: var(--color-button-danger-text);
+  background-color: var(--color-button-danger-background);
+}

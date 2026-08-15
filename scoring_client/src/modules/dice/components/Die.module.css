@@ -1,0 +1,33 @@
+.die__container {
+  width: 4.5rem;
+  height: 4.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "content";
+  background: white;
+  border-radius: var(--border-radius-small);
+  color: black;
+  text-shadow: 0 0 2px hsla(0 0% 0% / 0.3);
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+}
+
+.die__value {
+  grid-area: content;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+  justify-self: center;
+  align-self: center;
+  padding-bottom: var(--gap-small);
+}
+
+.die__label {
+  grid-area: content;
+  font-size: var(--font-size-small);
+  line-height: 1;
+  justify-self: center;
+  align-self: flex-end;
+  padding-bottom: var(--gap-tiny);
+}

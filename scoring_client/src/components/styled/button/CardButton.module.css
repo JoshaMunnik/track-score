@@ -1,0 +1,26 @@
+.card-button {
+  max-width: 340px;
+  width: 100%;
+  min-height: 300px;
+  border-radius: var(--border-radius-small);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--color-dark);
+  background: var(--color-light);
+}
+
+.card-button--image {
+  height: 140px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-button--content {
+  padding: var(--gap-normal);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-normal);
+  align-items: stretch;
+}
