@@ -23,7 +23,7 @@ jobs:
     # Runs only if changes occurred in the server folder
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: FTP Deploy Server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -40,24 +40,9 @@ jobs:
     name: Deploy Client
     runs-on: ubuntu-latest
     environment: production
+    needs: build-and-test-client
     # Runs only if changes occurred in the client folder
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: 'npm'
-          cache-dependency-path: scoring_client/package-lock.json
-
-      - name: Build Client
-        run: |
-          cd scoring_client
-          npm ci
-          npm run build
-
       - name: FTP Deploy Client Build
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -76,10 +61,10 @@ jobs:
     # Runs only if changes occurred in the client folder
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: 'npm'
