@@ -6,11 +6,6 @@ on:
       - master
     paths:
       - 'scoring_client/**'
-  pull_request:
-    branches:
-      - master
-    paths:
-      - 'scoring_client/**'
 
 jobs:
   # wait for build and test, then copy files from scoring_client to the server via FTP
