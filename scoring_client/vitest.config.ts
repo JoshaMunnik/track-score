@@ -7,8 +7,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     maxConcurrency: 1,
-    setupFiles: './src/test/setup.ts',
-    include: ['./src/**/*.test.ts'],
     testTimeout: 20000,
     execArgv: [
       '--use-system-ca',

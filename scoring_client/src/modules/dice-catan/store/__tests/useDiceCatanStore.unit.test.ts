@@ -3,22 +3,26 @@ import {beforeEach, describe, expect, it, vi} from 'vitest';
 const getRollsMock = vi.fn();
 const randomIntegerMock = vi.fn();
 
-vi.mock('../../../tools/diceTools.ts', () => ({
+vi.mock('../../../../tools/diceTools.ts', () => ({
   getRolls: getRollsMock,
 }));
 
-vi.mock('@ultraforce/ts-general-lib', () => ({
-  UFMath: {
-    randomInteger: randomIntegerMock,
-  },
-}));
+vi.mock('@ultraforce/ts-general-lib', async (importOriginal) => {
+  const originalModule = await importOriginal<typeof import('@ultraforce/ts-general-lib')>();
+  return {
+    ...originalModule,
+    UFMath: {
+      randomInteger: randomIntegerMock,
+    },
+  }
+});
 
 describe('useDiceCatanStore', () => {
   beforeEach(async () => {
     vi.clearAllMocks();
     localStorage.clear();
 
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     useDiceCatanStore.setState({
       active: false,
@@ -35,7 +39,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('has the expected initial state', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     expect(useDiceCatanStore.getState()).toMatchObject({
       active: false,
@@ -52,7 +56,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('sets config and resets game progress', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     useDiceCatanStore.getState().setConfig({
       useGroups: false,
@@ -77,7 +81,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('resets to the initial state', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     useDiceCatanStore.setState({
       active: true,
@@ -109,7 +113,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('resets game progress while keeping current config', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     useDiceCatanStore.setState({
       active: true,
@@ -141,7 +145,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('moves the barbarian ship backwards and activates the game', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     useDiceCatanStore.setState({
       barbarianShipMoves: 7,
@@ -160,7 +164,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('wraps the barbarian ship when moving from position zero', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     useDiceCatanStore.setState({
       barbarianShipMoves: 7,
@@ -179,7 +183,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('marks invaded when the barbarian ship reaches position zero', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     useDiceCatanStore.setState({
       barbarianShipMoves: 7,
@@ -197,7 +201,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('rolls dice without tracking barbarians', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     getRollsMock.mockReturnValue([3, 4]);
 
@@ -235,7 +239,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('rerolls sevens while barbarians are tracked and invasion has not happened', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     getRollsMock
       .mockReturnValueOnce([3, 4])
@@ -267,7 +271,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('moves the barbarian ship when the event die shows a barbarian ship', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     getRollsMock.mockReturnValue([2, 3]);
     randomIntegerMock.mockReturnValue(1);
@@ -291,7 +295,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('wraps the barbarian ship during rollDice when it moves below zero', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     getRollsMock.mockReturnValue([2, 3]);
     randomIntegerMock.mockReturnValue(2);
@@ -315,7 +319,7 @@ describe('useDiceCatanStore', () => {
   });
 
   it('marks invaded when the barbarian ship reaches zero during rollDice', async () => {
-    const {useDiceCatanStore} = await import('./useDiceCatanStore.ts');
+    const {useDiceCatanStore} = await import('../useDiceCatanStore.ts');
 
     getRollsMock.mockReturnValue([2, 3]);
     randomIntegerMock.mockReturnValue(3);

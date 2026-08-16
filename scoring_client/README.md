@@ -145,13 +145,15 @@ To add support to a module for multiple configurations, perform the following st
 
 ## Testing
 
-The application uses vitest for unit testing and playwright for end-to-end testing. 
+The application uses vitest for unit and integration testing and playwright for end-to-end testing. 
 
-To run the vitest tests, use `npm run test:unit`. For sources that have tests, there will be a
-`__tests` folder that contains the test files. The test files have the same name as the source file, 
-but with a `.test.ts` or `.test.tsx` extension.
+To run the vitest tests, use `npm run test:unit` or `npm run test:integration`. 
 
-To run playwright tests, use `npm run test:e2e`. The tests are located in the `tests` folder and
+For sources that have tests, there will be a `__tests` folder that contains the test files. The test
+files have the same name as the source file, but with a `.unit.test.ts(x)` or
+`.integration.test.ts(x)` extension.
+
+To run playwright tests, use `npm run test:e2e`. The tests are located in the `/tests` folder and
 use the `.spec.ts` extension. To test with the playwright UI, use `npm run test:e2e:ui`.
 
 When creating new playwright tests, use `npm run test:e2e:gen` to start an ui to help with creating

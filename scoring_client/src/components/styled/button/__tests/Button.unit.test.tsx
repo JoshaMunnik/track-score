@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from './Button';
+import { Button } from '../Button.tsx';
 import {describe, expect, it, vi} from "vitest";
-import {ButtonType} from "../../../types/enums/ui/ButtonType.ts";
+import {ButtonType} from "../../../../types/enums/ui/ButtonType.ts";
 
 describe('Button', () => {
   it('renders with correct text', () => {
