@@ -143,6 +143,7 @@ test.beforeEach(async ({page}) => {
 test('start with 3 players', async ({page}) => {
   await expect(page.getByRole('link', {name: 'Enter players'})).toBeVisible();
   await page.getByRole('link').first().click();
+  await page.waitForURL('**/wizard/players');
   await expect(page.getByRole('button', {name: 'Start'})).toBeVisible();
   await expect(page.getByRole('button', {name: 'Start'})).toBeDisabled();
   await page.getByRole('button', {name: 'Add'}).click();
@@ -165,6 +166,7 @@ test('start with 3 players', async ({page}) => {
   await page.getByRole('radio').first().check();
   await expect(page.getByRole('button', {name: 'Start'})).toBeEnabled();
   await page.getByRole('button', {name: 'Start'}).click();
+  await page.waitForURL(/\/wizard$/);
   await expect(page.getByRole('heading')).toContainText('Wizard - Round 1 of 20');
   await expect(page.getByText('Player 1dealer')).toBeVisible();
   await expect(page.locator('div').filter({hasText: /^Player 1dealer$/}).first()).toBeVisible();
@@ -175,6 +177,7 @@ test('start with 3 players', async ({page}) => {
 
 test('one round with 3 players', async ({page}) => {
   await page.getByRole('link', {name: 'Enter players'}).click();
+  await page.waitForURL('**/wizard/players');
   await page.getByRole('button', {name: 'Add'}).click();
   await page.getByRole('textbox').click();
   await page.getByRole('textbox').fill('Player 1');
@@ -184,6 +187,7 @@ test('one round with 3 players', async ({page}) => {
   await page.getByRole('textbox').nth(2).fill('Player 3');
   await page.getByRole('radio').first().check();
   await page.getByRole('button', {name: 'Start'}).click();
+  await page.waitForURL(/\/wizard$/);
   // player that is the bidder is the last player
   const score0 = page.locator('div[class*="grid-item"]').nth(5).locator('p');
   const bid0 = page.locator('div[class*="grid-item"]').nth(6).locator('p');
@@ -207,6 +211,7 @@ test('one round with 3 players', async ({page}) => {
   }
   // enter bids
   await page.getByRole('link', {name: 'Enter bids'}).click();
+  await page.waitForURL('**/wizard/bid');
   await page.getByRole('spinbutton').first().click();
   await page.getByRole('spinbutton').first().fill('1');
   await page.getByRole('spinbutton').nth(1).click();
@@ -214,6 +219,7 @@ test('one round with 3 players', async ({page}) => {
   await page.getByRole('spinbutton').nth(2).click();
   await page.getByRole('spinbutton').nth(2).fill('0');
   await page.getByRole('button', {name: 'Play'}).click();
+  await page.waitForURL(/\/wizard$/);
   // after entering bids
   await expect(page.locator('div[class*="grid-item"]')).toHaveCount(4 + 20 * 7, { timeout: 10000 });
   await expect(score0).toHaveText('');
@@ -224,6 +230,7 @@ test('one round with 3 players', async ({page}) => {
   await expect(bid2).toHaveText('0');
   // enter scores
   await page.getByRole('link', {name: 'Enter scores'}).click();
+  await page.waitForURL('**/wizard/scoring');
   await page.getByRole('spinbutton').first().click();
   await page.getByRole('spinbutton').first().fill('1');
   await page.getByRole('spinbutton').nth(1).click();
@@ -231,6 +238,7 @@ test('one round with 3 players', async ({page}) => {
   await page.getByRole('spinbutton').nth(2).click();
   await page.getByRole('spinbutton').nth(2).fill('0');
   await page.getByRole('button', {name: 'Next round'}).click();
+  await page.waitForURL(/\/wizard$/);
   // after entering scores
   await expect(page.locator('div[class*="grid-item"]')).toHaveCount(4 + 20 * 7, { timeout: 10000 });
   await expect(score0).toHaveText('20');
@@ -267,6 +275,7 @@ test('one round with 3 players', async ({page}) => {
 
 test('full game with 3 players', async ({page}) => {
   await page.getByRole('link', {name: 'Enter players'}).click();
+  await page.waitForURL('**/wizard/players');
   await page.getByRole('button', {name: 'Add'}).click();
   await page.getByRole('textbox').click();
   await page.getByRole('textbox').fill('Player 1');
@@ -276,6 +285,7 @@ test('full game with 3 players', async ({page}) => {
   await page.getByRole('textbox').nth(2).fill('Player 3');
   await page.getByRole('radio').first().check();
   await page.getByRole('button', {name: 'Start'}).click();
+  await page.waitForURL(/\/wizard$/);
   for (let index = 0; index < ThreePlayerGame.length; index++) {
     const round = ThreePlayerGame[index];
     // in each round, the dealer is the last player; in the first round the first player is the
@@ -284,6 +294,7 @@ test('full game with 3 players', async ({page}) => {
     const player1 = (player0 + 1) % 3;
     const player2 = (player1 + 1) % 3;
     await page.getByRole('link', {name: 'Enter bids'}).click();
+    await page.waitForURL('**/wizard/bid');
     await page.getByRole('spinbutton').first().click();
     await page.getByRole('spinbutton').first().fill(round[player0].bid.toString());
     await page.getByRole('spinbutton').nth(1).click();
@@ -291,7 +302,9 @@ test('full game with 3 players', async ({page}) => {
     await page.getByRole('spinbutton').nth(2).click();
     await page.getByRole('spinbutton').nth(2).fill(round[player2].bid.toString());
     await page.getByRole('button', {name: 'Play'}).click();
+    await page.waitForURL(/\/wizard$/);
     await page.getByRole('link', {name: 'Enter scores'}).click();
+    await page.waitForURL('**/wizard/scoring');
     await page.getByRole('spinbutton').first().click();
     await page.getByRole('spinbutton').first().fill(round[player0].taken.toString());
     await page.getByRole('spinbutton').nth(1).click();
@@ -300,6 +313,8 @@ test('full game with 3 players', async ({page}) => {
     await page.getByRole('spinbutton').nth(2).fill(round[player2].taken.toString());
     const lastRound = index == ThreePlayerGame.length - 1;
     await page.getByRole('button', {name: lastRound ? 'Finish' : 'Next round'}).click();
+    await page.waitForURL(/\/wizard$/);
+    await page.waitForTimeout(250);
     // there are 7 divs per round row (round + 3 x score + bid)
     // the first row contains 4 divs (round + 3x name)
     const score0 = page.locator('div[class*="grid-item"]').nth(4 + index * 7 + 1).locator('p');
@@ -319,6 +334,7 @@ test('full game with 3 players', async ({page}) => {
 
 test('starting a second game after a full game with the same 3 players', async ({page}) => {
   await page.getByRole('link', {name: 'Enter players'}).click();
+  await page.waitForURL('**/wizard/players');
   await page.getByRole('button', {name: 'Add'}).click();
   await page.getByRole('textbox').click();
   await page.getByRole('textbox').fill('Player 1');
@@ -328,6 +344,7 @@ test('starting a second game after a full game with the same 3 players', async (
   await page.getByRole('textbox').nth(2).fill('Player 3');
   await page.getByRole('radio').first().check();
   await page.getByRole('button', {name: 'Start'}).click();
+  await page.waitForURL(/\/wizard$/);
   // play games
   for (let index = 0; index < ThreePlayerGame.length; index++) {
     const round = ThreePlayerGame[index];
@@ -337,6 +354,7 @@ test('starting a second game after a full game with the same 3 players', async (
     const player1 = (player0 + 1) % 3;
     const player2 = (player1 + 1) % 3;
     await page.getByRole('link', {name: 'Enter bids'}).click();
+    await page.waitForURL('**/wizard/bid');
     await page.getByRole('spinbutton').first().click();
     await page.getByRole('spinbutton').first().fill(round[player0].bid.toString());
     await page.getByRole('spinbutton').nth(1).click();
@@ -344,7 +362,9 @@ test('starting a second game after a full game with the same 3 players', async (
     await page.getByRole('spinbutton').nth(2).click();
     await page.getByRole('spinbutton').nth(2).fill(round[player2].bid.toString());
     await page.getByRole('button', {name: 'Play'}).click();
+    await page.waitForURL(/\/wizard$/);
     await page.getByRole('link', {name: 'Enter scores'}).click();
+    await page.waitForURL('**/wizard/scoring');
     await page.getByRole('spinbutton').first().click();
     await page.getByRole('spinbutton').first().fill(round[player0].taken.toString());
     await page.getByRole('spinbutton').nth(1).click();
@@ -353,6 +373,7 @@ test('starting a second game after a full game with the same 3 players', async (
     await page.getByRole('spinbutton').nth(2).fill(round[player2].taken.toString());
     const lastRound = index == ThreePlayerGame.length - 1;
     await page.getByRole('button', {name: lastRound ? 'Finish' : 'Next round'}).click();
+    await page.waitForURL(/\/wizard$/);
   }
   await page.getByRole('button', {name: 'New game with same players'}).click();
   // player that is the bidder is the last player
@@ -380,6 +401,7 @@ test('starting a second game after a full game with the same 3 players', async (
 
 test('starting a second game after a full game with different 3 players', async ({page}) => {
   await page.getByRole('link', {name: 'Enter players'}).click();
+  await page.waitForURL('**/wizard/players');
   await page.getByRole('button', {name: 'Add'}).click();
   await page.getByRole('textbox').click();
   await page.getByRole('textbox').fill('Player 1');
@@ -389,6 +411,7 @@ test('starting a second game after a full game with different 3 players', async 
   await page.getByRole('textbox').nth(2).fill('Player 3');
   await page.getByRole('radio').first().check();
   await page.getByRole('button', {name: 'Start'}).click();
+  await page.waitForURL(/\/wizard$/);
   // play games
   for (let index = 0; index < ThreePlayerGame.length; index++) {
     const round = ThreePlayerGame[index];
@@ -398,6 +421,7 @@ test('starting a second game after a full game with different 3 players', async 
     const player1 = (player0 + 1) % 3;
     const player2 = (player1 + 1) % 3;
     await page.getByRole('link', {name: 'Enter bids'}).click();
+    await page.waitForURL('**/wizard/bid');
     await page.getByRole('spinbutton').first().click();
     await page.getByRole('spinbutton').first().fill(round[player0].bid.toString());
     await page.getByRole('spinbutton').nth(1).click();
@@ -405,7 +429,9 @@ test('starting a second game after a full game with different 3 players', async 
     await page.getByRole('spinbutton').nth(2).click();
     await page.getByRole('spinbutton').nth(2).fill(round[player2].bid.toString());
     await page.getByRole('button', {name: 'Play'}).click();
+    await page.waitForURL(/\/wizard$/);
     await page.getByRole('link', {name: 'Enter scores'}).click();
+    await page.waitForURL('**/wizard/scoring');
     await page.getByRole('spinbutton').first().click();
     await page.getByRole('spinbutton').first().fill(round[player0].taken.toString());
     await page.getByRole('spinbutton').nth(1).click();
@@ -414,8 +440,10 @@ test('starting a second game after a full game with different 3 players', async 
     await page.getByRole('spinbutton').nth(2).fill(round[player2].taken.toString());
     const lastRound = index == ThreePlayerGame.length - 1;
     await page.getByRole('button', {name: lastRound ? 'Finish' : 'Next round'}).click();
+    await page.waitForURL(/\/wizard$/);
   }
   await page.getByRole('button', {name: 'New players'}).click();
+  await page.waitForURL('**/wizard/players');
   await page.getByRole('button', {name: 'Add'}).click();
   await page.getByRole('textbox').click();
   await page.getByRole('textbox').fill('Player 4');
@@ -425,6 +453,7 @@ test('starting a second game after a full game with different 3 players', async 
   await page.getByRole('textbox').nth(2).fill('Player 6');
   await page.getByRole('radio').first().check();
   await page.getByRole('button', {name: 'Start'}).click();
+  await page.waitForURL(/\/wizard$/);
   await expect(page.locator('div').filter({hasText: /^Player 4dealer$/}).first()).toBeVisible();
   await expect(page.locator('div').filter({hasText: /^Player 5$/}).first()).toBeVisible();
   await expect(page.locator('div').filter({hasText: /^Player 6$/}).first()).toBeVisible();
